@@ -33,7 +33,7 @@ export class EventsDTO implements Readonly<EventsDTO> {
   
   @ApiProperty({ required: true })
   @IsString()
-  cityDeu: string;
+  cityDeu?: string;
 
   @ApiProperty({ required: true })
   @IsArray()

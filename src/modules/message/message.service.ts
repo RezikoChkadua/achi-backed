@@ -11,7 +11,6 @@ export class MessagesService {
   
   public async getAll(query): Promise<MessageDTO[]> {
     let options = this.calculateOptions(query)
-    console.log('options', options)
     const data = await this.repo.find(options)
     .then(items => items.map(e => MessageDTO.fromEntity(e)));
     return data

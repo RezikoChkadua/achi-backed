@@ -13,13 +13,13 @@ export class EventsService {
     private readonly eventSliderService: EventSliderService) { }
   
   public async getAll(query): Promise<EventsDTO[]> {
+    const language = query.language
     let options = this.calculateOptions(query)
-    console.log("~ options", options)
     
     const data = await this.repo.find(options)
       .then(items => items.map(e => EventsDTO.fromEntity(e)));
-    
-    return data
+      
+    return  this.handleLanguage(language, data)  
   }
 
   public async getOneSlider(id: string): Promise<unknown> {
@@ -46,8 +46,7 @@ export class EventsService {
   }
 
   public async updateEvent(id: string, dto): Promise<any> {
-    
-    if( dto.pictures &&  dto.pictures.length){
+    if( dto.pictures &&  dto.pictures.length) {
       await this.eventSliderService.saveMany(id, dto.pictures)
     }
 
@@ -68,7 +67,7 @@ export class EventsService {
     let { filter, range, sort} = query
     let option = {}
     if(sort){
-      option['sort'] = JSON.parse(sort) 
+      option['sort'] = typeof sort === 'object' ? sort : JSON.parse(sort) 
     }
     if(range){
       let parsedRange = JSON.parse(range)
@@ -100,11 +99,29 @@ export class EventsService {
         delete parsedFilter['pastEvent']
       }
 
-
       option['where'] = { ...parsedFilter, ...dateQuery}
     }
 
     return option
   }
   
+
+  handleLanguage(lang, data:EventsDTO[]){
+    if(lang === "de"){
+      return data.map(item => ({
+        id: item.id,
+        city: item.cityDeu,
+        date: item.date,
+        address: item.addressDeu,
+        finissage: item.finissageDeu,
+        finissageText: item.finissageTextDeu,
+        description: item.descriptionDeu,
+      }))
+    }
+
+    return data
+
+  }
+
+
 }
