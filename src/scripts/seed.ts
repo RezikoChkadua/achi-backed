@@ -9,8 +9,11 @@ import { CreateUserDto } from '../modules/auth/createUser.dto';
 import { UsersService } from '../modules/user/users.service';
 
 async function run() {
-
-  const seedUser: CreateUserDto = { username: 'admin', password: 'admin', email:'admin@gmail.com' };
+  const seedUser: CreateUserDto = {
+    username: 'admin',
+    password: 'admin',
+    email: 'admin@gmail.com',
+  };
 
   const seedId = Date.now()
     .toString()
@@ -20,18 +23,17 @@ async function run() {
 
   const opt = {
     ...configService.getTypeOrmConfig(),
-    debug: true
+    debug: true,
   };
 
   const connection = await createConnection(opt as ConnectionOptions);
   const userService = new UsersService(connection.getRepository(User));
-  const jwtService = new JwtService({})
+  const jwtService = new JwtService({});
   const authService = new AuthService(userService, jwtService);
 
-   await authService.register(seedUser)
+  await authService.register(seedUser);
 
-   console.log('user seeded')
-
+  console.log('user seeded');
 }
 
 run()
