@@ -117,6 +117,7 @@ export class EventsService {
         city: item.cityDeu,
         date: item.date,
         address: item.addressDeu,
+        secondAddress: item.secondAddress,
         finissage: item.finissageDeu,
         finissageText: item.finissageTextDeu,
         description: item.descriptionDeu,

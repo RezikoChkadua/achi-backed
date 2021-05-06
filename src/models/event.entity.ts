@@ -9,18 +9,21 @@ export class Events extends BaseEntity {
 
   @Column({ type: 'varchar', length: 300 })
   date: Date;
-  
+
   @Column({ type: 'varchar', length: 300 })
   address: string;
 
-  @Column({ type: 'varchar', length: 300, nullable:true })
+  @Column({ type: 'varchar', length: 300 })
+  secondAddress: string;
+
+  @Column({ type: 'varchar', length: 300, nullable: true })
   finissage: string;
-  
-  @Column({ type: 'varchar', length: 300,nullable:true })
-  finissageText:string;
+
+  @Column({ type: 'varchar', length: 300, nullable: true })
+  finissageText: string;
 
   @Column({ type: 'varchar', length: 300 })
-  description: string;  
+  description: string;
 
   // Deu
   @Column({ type: 'varchar', length: 300 })
@@ -30,12 +33,14 @@ export class Events extends BaseEntity {
   addressDeu: string;
 
   @Column({ type: 'varchar', length: 300 })
+  secondAddressDeu: string;
+
+  @Column({ type: 'varchar', length: 300 })
   finissageDeu: string;
 
   @Column({ type: 'varchar', length: 300 })
   finissageTextDeu: string;
 
   @Column({ type: 'varchar', length: 300 })
-  descriptionDeu: string; 
+  descriptionDeu: string;
 }
-

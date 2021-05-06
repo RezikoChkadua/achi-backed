@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsString, IsUUID, } from 'class-validator';
+import { IsArray, IsBoolean, IsString, IsUUID } from 'class-validator';
 import { Events } from '../../models/event.entity';
 
 export class EventsDTO implements Readonly<EventsDTO> {
@@ -19,6 +19,10 @@ export class EventsDTO implements Readonly<EventsDTO> {
   @IsString()
   address: string;
 
+  @ApiProperty({ required: true })
+  @IsString()
+  secondAddress: string;
+
   @ApiProperty({ required: false })
   @IsString()
   finissage: string;
@@ -26,14 +30,18 @@ export class EventsDTO implements Readonly<EventsDTO> {
   @ApiProperty({ required: false })
   @IsString()
   finissageText: string;
-  
+
   @ApiProperty({ required: true })
   @IsString()
   description: string;
-  
+
   @ApiProperty({ required: true })
   @IsString()
   cityDeu?: string;
+
+  @ApiProperty({ required: true })
+  @IsArray()
+  secondAddressDeu?: string;
 
   @ApiProperty({ required: true })
   @IsArray()
@@ -50,22 +58,23 @@ export class EventsDTO implements Readonly<EventsDTO> {
   @ApiProperty({ required: true })
   @IsArray()
   descriptionDeu?: string;
-  
-  
+
   public static from(dto: Partial<EventsDTO>) {
     const it = new EventsDTO();
-    it.id = dto.id
-    it.city = dto.city
-    it.date = dto.date
-    it.address = dto.address
-    it.finissage = dto.finissage
-    it.finissageText= dto.finissageText
-    it.description = dto.description
-    it.cityDeu = dto.cityDeu
-    it.addressDeu = dto.addressDeu
-    it.finissageDeu = dto.finissageDeu
-    it.finissageTextDeu = dto.finissageTextDeu
-    it.descriptionDeu = dto.descriptionDeu
+    it.id = dto.id;
+    it.city = dto.city;
+    it.date = dto.date;
+    it.address = dto.address;
+    it.secondAddress = dto.secondAddress;
+    it.finissage = dto.finissage;
+    it.finissageText = dto.finissageText;
+    it.description = dto.description;
+    it.cityDeu = dto.cityDeu;
+    it.addressDeu = dto.addressDeu;
+    it.secondAddressDeu = dto.secondAddressDeu;
+    it.finissageDeu = dto.finissageDeu;
+    it.finissageTextDeu = dto.finissageTextDeu;
+    it.descriptionDeu = dto.descriptionDeu;
 
     return it;
   }
@@ -74,38 +83,41 @@ export class EventsDTO implements Readonly<EventsDTO> {
     return this.from({
       id: entity.id,
       city: entity.city,
-      date: entity.date,  
+      date: entity.date,
       address: entity.address,
+      secondAddress: entity.secondAddress,
       finissage: entity.finissage,
       finissageText: entity.finissageText,
       description: entity.description,
-      
+
       cityDeu: entity.cityDeu,
       addressDeu: entity.addressDeu,
+      secondAddressDeu: entity.secondAddress,
       finissageDeu: entity.finissageDeu,
       finissageTextDeu: entity.finissageTextDeu,
-      descriptionDeu: entity.descriptionDeu
+      descriptionDeu: entity.descriptionDeu,
     });
   }
 
   public static toEntity(dto: EventsDTO) {
     const it = new Events();
-    it.id = dto.id,
-    it.city = dto.city, 
-    it.date = dto.date,
-    it.address = dto.address,
-    it.finissage = dto.finissage,
-    it.finissageText = dto.finissageText,
-    it.description = dto.description,
-    
-    it.cityDeu = dto.cityDeu,
-    it.addressDeu = dto.addressDeu,
-    it.finissageDeu = dto.finissageDeu,
-    it.finissageTextDeu = dto.finissageTextDeu,
-    it.descriptionDeu = dto.descriptionDeu
+    it.id = dto.id;
+    it.city = dto.city;
+    it.date = dto.date;
+    it.address = dto.address;
+    it.secondAddress = dto.secondAddress;
+
+    it.finissage = dto.finissage;
+    it.finissageText = dto.finissageText;
+    it.description = dto.description;
+    it.cityDeu = dto.cityDeu;
+    it.addressDeu = dto.addressDeu;
+    it.secondAddressDeu = dto.secondAddressDeu;
+    it.finissageDeu = dto.finissageDeu;
+    it.finissageTextDeu = dto.finissageTextDeu;
+    it.descriptionDeu = dto.descriptionDeu;
 
     it.createDateTime = new Date();
     return it;
   }
-
 }
