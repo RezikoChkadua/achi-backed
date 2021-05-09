@@ -17,9 +17,6 @@ export class Events extends BaseEntity {
   secondAddress: string;
 
   @Column({ type: 'varchar', length: 300, nullable: true })
-  finissage: string;
-
-  @Column({ type: 'varchar', length: 300, nullable: true })
   finissageText: string;
 
   @Column({ type: 'varchar', length: 300 })
@@ -34,9 +31,6 @@ export class Events extends BaseEntity {
 
   @Column({ type: 'varchar', length: 300 })
   secondAddressDeu: string;
-
-  @Column({ type: 'varchar', length: 300 })
-  finissageDeu: string;
 
   @Column({ type: 'varchar', length: 300 })
   finissageTextDeu: string;

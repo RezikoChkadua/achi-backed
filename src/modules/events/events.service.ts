@@ -118,7 +118,6 @@ export class EventsService {
         date: item.date,
         address: item.addressDeu,
         secondAddress: item.secondAddress,
-        finissage: item.finissageDeu,
         finissageText: item.finissageTextDeu,
         description: item.descriptionDeu,
       }));

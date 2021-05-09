@@ -25,10 +25,6 @@ export class EventsDTO implements Readonly<EventsDTO> {
 
   @ApiProperty({ required: false })
   @IsString()
-  finissage: string;
-
-  @ApiProperty({ required: false })
-  @IsString()
   finissageText: string;
 
   @ApiProperty({ required: true })
@@ -49,10 +45,6 @@ export class EventsDTO implements Readonly<EventsDTO> {
 
   @ApiProperty({ required: false })
   @IsArray()
-  finissageDeu?: string;
-
-  @ApiProperty({ required: false })
-  @IsArray()
   finissageTextDeu?: string;
 
   @ApiProperty({ required: true })
@@ -66,13 +58,11 @@ export class EventsDTO implements Readonly<EventsDTO> {
     it.date = dto.date;
     it.address = dto.address;
     it.secondAddress = dto.secondAddress;
-    it.finissage = dto.finissage;
     it.finissageText = dto.finissageText;
     it.description = dto.description;
     it.cityDeu = dto.cityDeu;
     it.addressDeu = dto.addressDeu;
     it.secondAddressDeu = dto.secondAddressDeu;
-    it.finissageDeu = dto.finissageDeu;
     it.finissageTextDeu = dto.finissageTextDeu;
     it.descriptionDeu = dto.descriptionDeu;
 
@@ -86,14 +76,12 @@ export class EventsDTO implements Readonly<EventsDTO> {
       date: entity.date,
       address: entity.address,
       secondAddress: entity.secondAddress,
-      finissage: entity.finissage,
       finissageText: entity.finissageText,
       description: entity.description,
 
       cityDeu: entity.cityDeu,
       addressDeu: entity.addressDeu,
       secondAddressDeu: entity.secondAddress,
-      finissageDeu: entity.finissageDeu,
       finissageTextDeu: entity.finissageTextDeu,
       descriptionDeu: entity.descriptionDeu,
     });
@@ -107,13 +95,11 @@ export class EventsDTO implements Readonly<EventsDTO> {
     it.address = dto.address;
     it.secondAddress = dto.secondAddress;
 
-    it.finissage = dto.finissage;
     it.finissageText = dto.finissageText;
     it.description = dto.description;
     it.cityDeu = dto.cityDeu;
     it.addressDeu = dto.addressDeu;
     it.secondAddressDeu = dto.secondAddressDeu;
-    it.finissageDeu = dto.finissageDeu;
     it.finissageTextDeu = dto.finissageTextDeu;
     it.descriptionDeu = dto.descriptionDeu;
 
