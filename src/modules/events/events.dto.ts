@@ -1,8 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsBoolean, IsString, IsUUID } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 import { Events } from '../../models/event.entity';
 
 export class EventsDTO implements Readonly<EventsDTO> {
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsUUID()
   id: string;
@@ -19,14 +26,17 @@ export class EventsDTO implements Readonly<EventsDTO> {
   @IsString()
   address: string;
 
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsString()
   secondAddress: string;
 
+  @IsOptional()
   @ApiProperty({ required: false })
   @IsString()
   finissageText: string;
 
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsString()
   description: string;
@@ -35,18 +45,22 @@ export class EventsDTO implements Readonly<EventsDTO> {
   @IsString()
   cityDeu?: string;
 
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsArray()
   secondAddressDeu?: string;
 
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsArray()
   addressDeu?: string;
 
+  @IsOptional()
   @ApiProperty({ required: false })
   @IsArray()
   finissageTextDeu?: string;
 
+  @IsOptional()
   @ApiProperty({ required: true })
   @IsArray()
   descriptionDeu?: string;
