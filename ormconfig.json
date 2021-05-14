@@ -5,7 +5,7 @@
   "username": "postgres",
   "password": "mysecretpassword",
   "database": "my_database",
-  "entities": ["**/*.entity{.ts,.js}"],
+  "entities": ["dist/**/*.entity.js"],
   "migrationsTableName": "migration",
   "migrations": ["src/migration/*.ts"],
   "cli": {

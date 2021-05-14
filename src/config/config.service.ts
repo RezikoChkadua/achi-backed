@@ -25,6 +25,7 @@ class ConfigService {
 
   public isProduction() {
     const mode = this.getValue('MODE', false);
+    console.log('~ mode', mode);
     return mode != 'DEV';
   }
 
@@ -38,7 +39,9 @@ class ConfigService {
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
 
-      entities: ['**/*.entity{.ts,.js}'],
+      entities: this.isProduction()
+        ? ['dist/**/*.entity.js']
+        : ['**/*.entity{.ts,.js}'],
 
       synchronize: true,
 
@@ -50,7 +53,7 @@ class ConfigService {
         migrationsDir: 'src/migration',
       },
 
-      ssl: this.isProduction(),
+      ssl: false,
     };
   }
 }
