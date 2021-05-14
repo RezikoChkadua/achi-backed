@@ -11,7 +11,7 @@ import { UsersService } from '../modules/user/users.service';
 async function run() {
   const seedUser: CreateUserDto = {
     username: 'admin',
-    password: 'admin',
+    password: 'S7uP108i7Ch',
     email: 'admin@gmail.com',
   };
 
