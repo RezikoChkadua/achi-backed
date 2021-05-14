@@ -95,7 +95,7 @@ export class EventsDTO implements Readonly<EventsDTO> {
 
       cityDeu: entity.cityDeu,
       addressDeu: entity.addressDeu,
-      secondAddressDeu: entity.secondAddress,
+      secondAddressDeu: entity.secondAddressDeu,
       finissageTextDeu: entity.finissageTextDeu,
       descriptionDeu: entity.descriptionDeu,
     });

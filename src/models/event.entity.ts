@@ -19,7 +19,7 @@ export class Events extends BaseEntity {
   @Column({ type: 'varchar', length: 300, nullable: true })
   finissageText: string;
 
-  @Column({ type: 'varchar', length: 300, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   description: string;
 
   // Deu
@@ -35,6 +35,6 @@ export class Events extends BaseEntity {
   @Column({ type: 'varchar', length: 300, nullable: true })
   finissageTextDeu: string;
 
-  @Column({ type: 'varchar', length: 300, nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   descriptionDeu: string;
 }
