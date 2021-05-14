@@ -9,39 +9,50 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-    constructor(@InjectRepository(User) private readonly repo: Repository<User>) { }
-    
-    public async getOne(options?: object): Promise<UserDto> {
-        return await this.repo.findOne(options)
-    }
-    async findByLogin({ username, password }: LoginUserDto): Promise<UserDto> {    
-        const user = await this.repo.findOne({ where: { username } });
-        
-        if (!user) {
-            throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);    
-        }
-        
-        // compare passwords    
-        const areEqual = await comparePasswords(password, user.password);
-        if (!areEqual) {
-            throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);    
-        }
-        
-        return user  
-    }
-    async findByPayload({ username }: any): Promise<UserDto> {
-        return await this.getOne({ 
-            where:  { username } });  
+  constructor(
+    @InjectRepository(User) private readonly repo: Repository<User>,
+  ) {}
+
+  public async getOne(options?: object): Promise<UserDto> {
+    return await this.repo.findOne(options);
+  }
+  async findByLogin({ username, password }: LoginUserDto): Promise<UserDto> {
+    const user = await this.repo.findOne({ where: { username } });
+
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
     }
 
-    public async create(dto:  CreateUserDto): Promise<CreateUserDto> {
-        let data = CreateUserDto.toEntity(dto)
-        return await this.repo.save(data)
-          .then(e =>  CreateUserDto.fromEntity(e));
-      }
+    // compare passwords
+    const areEqual = await comparePasswords(password, user.password);
+    if (!areEqual) {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+    }
+
+    return user;
+  }
+  async findByPayload({ username }: any): Promise<UserDto> {
+    return await this.getOne({
+      where: { username },
+    });
   }
 
-  async function comparePasswords(password: string, hash: string) {
-    return await bcrypt.compare(password, hash);
+  public async create(dto: CreateUserDto): Promise<CreateUserDto> {
+    let data = CreateUserDto.toEntity(dto);
+    return await this.repo.save(data).then(e => CreateUserDto.fromEntity(e));
+  }
+
+  async hashPassword(password: string): Promise<string> {
+    const SALT_DEPTH = 10;
+    const salt = await bcrypt.genSalt(SALT_DEPTH);
+    return await bcrypt.hash(password, salt);
+  }
+
+  async count() {
+    return await this.repo.count();
+  }
 }
 
+async function comparePasswords(password: string, hash: string) {
+  return await bcrypt.compare(password, hash);
+}
