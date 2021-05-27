@@ -7,7 +7,6 @@ export class UserSeeder implements OnModuleInit {
 
   async onModuleInit() {
     if (process.env.NODE_ENV !== 'test') {
-      console.log('iiiiinnn');
       const adminCount = await this.userService.count();
       if (adminCount === 0) {
         this.userService.create({

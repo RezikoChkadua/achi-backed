@@ -21,7 +21,9 @@ export class EventsService {
       .find(options)
       .then(items => items.map(e => EventsDTO.fromEntity(e)));
 
-    return this.handleLanguage(language, data);
+    return this.handleLanguage(language, data).sort(
+      (a, b) => (new Date(a.date) as any) - (new Date(b.date) as any),
+    );
   }
 
   public async getOneSlider(id: string): Promise<unknown> {

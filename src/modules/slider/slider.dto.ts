@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsString, IsUUID, } from 'class-validator';
+import { IsBoolean, IsNumber, IsString, IsUUID } from 'class-validator';
 import { Message } from '../../models/message.entity';
 import { Slider } from '../../models/slider.entity';
 import { MessageStatus } from '../../types';
@@ -10,14 +10,19 @@ export class SliderDto implements Readonly<SliderDto> {
   @IsUUID()
   id: string;
 
+  @ApiProperty({ required: true })
+  @IsNumber()
+  sliderNumber: number;
+
   @ApiProperty({ required: false })
   @IsString()
   imageUrl: string;
-  
+
   public static from(dto: Partial<SliderDto>) {
     const it = new SliderDto();
     it.id = dto.id;
-    it.imageUrl = dto.imageUrl
+    it.imageUrl = dto.imageUrl;
+    it.sliderNumber = dto.sliderNumber;
     return it;
   }
 
@@ -25,6 +30,7 @@ export class SliderDto implements Readonly<SliderDto> {
     return this.from({
       id: entity.id,
       imageUrl: entity.imageUrl,
+      sliderNumber: entity.sliderNumber,
     });
   }
 
@@ -32,7 +38,7 @@ export class SliderDto implements Readonly<SliderDto> {
     const it = new Slider();
     it.id = dto.id;
     it.imageUrl = dto.imageUrl;
+    it.sliderNumber = dto.sliderNumber;
     return it;
   }
-
 }

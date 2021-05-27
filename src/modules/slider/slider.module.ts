@@ -8,6 +8,6 @@ import { Slider } from '../../models/slider.entity';
   imports: [TypeOrmModule.forFeature([Slider])],
   providers: [SliderService],
   controllers: [SliderController],
-  exports: []
+  exports: [],
 })
 export class SliderModule {}

@@ -25,7 +25,6 @@ class ConfigService {
 
   public isProduction() {
     const mode = this.getValue('MODE', false);
-    console.log('~ mode', mode);
     return mode != 'DEV';
   }
 
