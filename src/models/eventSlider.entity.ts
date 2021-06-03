@@ -1,6 +1,5 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { BaseEntity } from './base.entity';
-import { Events } from './event.entity';
 
 @Entity({ name: 'event-slider' })
 export class EventSlider extends BaseEntity {
