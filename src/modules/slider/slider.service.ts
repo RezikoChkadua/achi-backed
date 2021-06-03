@@ -19,6 +19,7 @@ export class SliderService {
       let base64Image = base64.split(';base64,').pop();
       let name = uuidv4();
       let ext = type.split('/')[1];
+
       require('fs').writeFile(
         `public/${name}.${ext}`,
         base64Image,
@@ -46,7 +47,11 @@ export class SliderService {
 
   public async deleteItem(id) {
     const data = await this.repo.findOne({ id });
-    fs.unlinkSync(`public/${data.imageUrl}`);
+    try {
+      fs.unlinkSync(`public/${data.imageUrl}`);
+    } catch (err) {
+      console.log('err', err);
+    }
     return await this.repo.delete({ id });
   }
 }

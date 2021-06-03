@@ -41,7 +41,11 @@ export class EventSliderService {
 
   async delete(id: string) {
     const data = await this.repo.findOne({ id });
-    fs.unlinkSync(`public/${data.imageUrl}`);
+    try {
+      fs.unlinkSync(`public/${data.imageUrl}`);
+    } catch (err) {
+      console.log('err', err);
+    }
     return await this.repo.delete({ id });
   }
 }
