@@ -36,4 +36,11 @@ export class SliderController {
   public async deleteItem(@Param('id') id): Promise<unknown> {
     return this.service.deleteItem(id);
   }
+
+  @Delete('/:id')
+  @Header('Access-Control-Expose-Headers', '*')
+  @Header('Content-Range', 'messages 0-20/319')
+  public async deleteEventItem(@Param('id') id): Promise<unknown> {
+    return this.service.deleteItem(id);
+  }
 }
