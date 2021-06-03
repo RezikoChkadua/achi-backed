@@ -6,6 +6,6 @@ export class Message extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   text: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   status: string;
 }
